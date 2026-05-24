@@ -19,7 +19,11 @@ namespace Project2.models
         public int PatientId { get; set; }
         public int DoctorId { get; set; }
 
-        public virtual Patient? Patient { get; set; }
-        public virtual Doctor? Doctor { get; set; }
+        public Patient Patient { get; set; }
+        public Doctor Doctor { get; set; }
+
+        public string PatientFullName => Patient?.FullName ?? "";
+        public string DoctorFullName => Doctor?.FullName ?? "";
+
     }
 }

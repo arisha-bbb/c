@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\stern\source\repos\Project2\Project2\App.xaml
-11-1299979199
+121566250900
 
-28362696875
+301341753276
 220-2067245650
-MainWindow.xaml;pages\Appointment.xaml;pages\DoctorPage.xaml;pages\MedicalRecord.xaml;pages\PatientPage.xaml;views\DoctorDialog.xaml;views\EditAppointmentDialog.xaml;views\EditMedicalRecordDialog.xaml;views\LoginWindow.xaml;views\PatientDialog.xaml;views\SettingsWindow.xaml;
+MainWindow.xaml;pages\AppointmentPage.xaml;pages\DoctorPage.xaml;pages\MedicalRecordPage.xaml;pages\PatientPage.xaml;pages\ReportPage.xaml;views\AppointmentDialog.xaml;views\DoctorDialog.xaml;views\EditMedicalRecordDialog.xaml;views\LoginWindow.xaml;views\PatientDialog.xaml;views\SettingsWindow.xaml;
 
 False
 

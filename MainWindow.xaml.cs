@@ -69,31 +69,31 @@ namespace Project2
 
         private void BtnMedicalRecord_Click(object sender, RoutedEventArgs e)
         {
-            //txtPageTitle.Text = "Медицинская карта";
-            //contentControl.Content = new MedicalRecord();
+   
+            contentControl.Content = new MedicalRecordPage();
         }
 
         private void BtnAppointment_Click(object sender, RoutedEventArgs e)
         {
-            //txtPageTitle.Text = "Запись на приём";
-            //contentControl.Content = new Appointment();
+      
+            contentControl.Content = new AppointmentPage();
         }
 
         private void BtnReports_Click(object sender, RoutedEventArgs e)
         {
-            //txtPageTitle.Text = "Отчёты";
-            // contentControl.Content = new ReportsPage();
+       
+            contentControl.Content = new ReportPage();
         }
 
         private void BtnUsers_Click(object sender, RoutedEventArgs e)
         {
-            //txtPageTitle.Text = "Пользователи";
+
             // contentControl.Content = new UsersPage();
         }
 
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
         {
-            //txtPageTitle.Text = "Настройки";
+
             // contentControl.Content = new SettingsPage();
         }
 

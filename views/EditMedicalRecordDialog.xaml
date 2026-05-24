@@ -3,11 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Project2.views"
         mc:Ignorable="d"
-       Title="Редактирование записи" 
-        Height="400" 
-        Width="500"
+        Title="Запись медкарты" 
+        Height="400" Width="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         ShowInTaskbar="False">
@@ -28,12 +26,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-        <Style TargetType="DatePicker" x:Key="FormDatePicker">
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Margin" Value="0,2,0,10"/>
-        </Style>
     </Window.Resources>
 
     <Border Background="White">
@@ -48,108 +40,56 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" 
-                       Text="Редактирование записи" 
-                       FontSize="18" 
-                       FontWeight="Bold"
-                       Foreground="#2C3E50"
-                       Margin="0,0,0,15"/>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                       Text="Запись медкарты"
+                       FontSize="18" FontWeight="Bold"
+                       Foreground="#2C3E50" Margin="0,0,0,15"/>
 
             <Rectangle Grid.Row="1" Grid.ColumnSpan="2" Height="1" Fill="#ECF0F1" Margin="0,0,0,15"/>
 
-         
-            <TextBlock Grid.Row="2" Grid.Column="0" 
-                       Text="Дата *" 
-                       FontWeight="SemiBold" 
-                       Foreground="#2C3E50"
-                       VerticalAlignment="Center"/>
-            <DatePicker Grid.Row="2" Grid.Column="1" 
-                        SelectedDate="{Binding Record.RecordDate}"
-                        Style="{StaticResource FormDatePicker}"/>
 
-           
-            <TextBlock Grid.Row="3" Grid.Column="0" 
-                       Text="Диагноз *" 
-                       FontWeight="SemiBold" 
-                       Foreground="#2C3E50"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding Record.Diagnosis, UpdateSourceTrigger=PropertyChanged}"
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Дата *"
+                       FontWeight="SemiBold" Foreground="#2C3E50" VerticalAlignment="Center"/>
+            <DatePicker x:Name="dpDate" Grid.Row="2" Grid.Column="1"
+                        Height="32" Margin="0,2,0,10"/>
+
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Диагноз *"
+                       FontWeight="SemiBold" Foreground="#2C3E50" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDiagnosis" Grid.Row="3" Grid.Column="1"
                      Style="{StaticResource FormTextBox}"/>
 
-         
-            <TextBlock Grid.Row="4" Grid.Column="0" 
-                       Text="Назначение *" 
-                       FontWeight="SemiBold" 
-                       Foreground="#2C3E50"
-                       VerticalAlignment="Center"/>
-            <TextBox Grid.Row="4" Grid.Column="1" 
-                     Text="{Binding Record.Treatment, UpdateSourceTrigger=PropertyChanged}"
-                     Height="100"
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Назначение *"
+                       FontWeight="SemiBold" Foreground="#2C3E50" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtTreatment" Grid.Row="4" Grid.Column="1"
+                     Height="100" Margin="0,2,0,10"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto"
-                     Margin="0,2,0,10"/>
+                     VerticalScrollBarVisibility="Auto"/>
 
-            <ItemsControl Grid.Row="5" Grid.ColumnSpan="2" 
-                          ItemsSource="{Binding ValidationErrors}"
-                          Margin="0,5,0,5">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" 
-                                   Foreground="#E74C3C" 
-                                   FontSize="11"
-                                   Margin="0,1,0,1"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
 
-        
             <Grid Grid.Row="6" Grid.ColumnSpan="2" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" 
-                        Content="Сохранить" 
-                        Command="{Binding SaveCommand}"
-                        Background="#27AE60" 
-                        Foreground="White"
-                        Height="38"
-                        Margin="0,0,10,0"
-                        FontWeight="Bold"
-                        Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Button Grid.Column="0" Content="Сохранить"
+                        Click="BtnSave_Click"
+                        Background="#27AE60" Foreground="White"
+                        Height="38" Margin="0,0,10,0"
+                        FontWeight="Bold" Cursor="Hand"/>
 
-                <Button Grid.Column="1" 
-                        Content="Отмена" 
-                        Command="{Binding CancelCommand}"
-                        Background="#95A5A6" 
-                        Foreground="White"
-                        Height="38"
-                        Margin="10,0,0,0"
-                        FontWeight="Bold"
-                        Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Button Grid.Column="1" Content="Отмена"
+                        Click="BtnCancel_Click"
+                        Background="#95A5A6" Foreground="White"
+                        Height="38" Margin="10,0,0,0"
+                        FontWeight="Bold" Cursor="Hand"/>
             </Grid>
         </Grid>
     </Border>

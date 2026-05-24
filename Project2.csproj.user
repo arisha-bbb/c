@@ -2,19 +2,22 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="pages\Appointment.xaml.cs">
+    <Compile Update="pages\AppointmentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="pages\DoctorPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="pages\MedicalRecord.xaml.cs">
+    <Compile Update="pages\MedicalRecordPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="pages\PatientPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="views\EditAppointmentDialog.xaml.cs">
+    <Compile Update="pages\ReportPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="views\AppointmentDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="views\DoctorDialog.xaml.cs">

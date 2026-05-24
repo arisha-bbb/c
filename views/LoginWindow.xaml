@@ -33,8 +33,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        
-        <Border Grid.Row="0" Background="#2C3E50" Padding="20">
+
+        <Border Grid.Row="0" Background="#245358" Padding="20">
             <TextBlock Text="Вход в систему АРМ Медицинская клиника"
                        FontSize="20"
                        FontWeight="Bold"
@@ -48,7 +48,8 @@
                     HorizontalAlignment="Center"
                     Width="300">
 
-            <TextBlock Text="👤" 
+            <TextBlock Text="⚕️" 
+                       Foreground="#245358"
                        FontSize="48" 
                        HorizontalAlignment="Center"
                        Margin="0,0,0,20"/>

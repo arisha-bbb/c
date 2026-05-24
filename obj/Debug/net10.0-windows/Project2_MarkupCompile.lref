@@ -1,13 +1,11 @@
 ﻿
 
 FC:\Users\stern\source\repos\Project2\Project2\MainWindow.xaml;;
-FC:\Users\stern\source\repos\Project2\Project2\views\EditMedicalRecordDialog.xaml;;
 FC:\Users\stern\source\repos\Project2\Project2\views\LoginWindow.xaml;;
 FC:\Users\stern\source\repos\Project2\Project2\views\PatientDialog.xaml;;
 FC:\Users\stern\source\repos\Project2\Project2\views\SettingsWindow.xaml;;
-FC:\Users\stern\source\repos\Project2\Project2\pages\MedicalRecord.xaml;;
 FC:\Users\stern\source\repos\Project2\Project2\pages\PatientPage.xaml;;
-FC:\Users\stern\source\repos\Project2\Project2\pages\Appointment.xaml;;
 FC:\Users\stern\source\repos\Project2\Project2\pages\DoctorPage.xaml;;
-FC:\Users\stern\source\repos\Project2\Project2\views\EditAppointmentDialog.xaml;;
+FC:\Users\stern\source\repos\Project2\Project2\pages\AppointmentPage.xaml;;
+FC:\Users\stern\source\repos\Project2\Project2\views\AppointmentDialog.xaml;;
 

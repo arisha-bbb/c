@@ -21,5 +21,7 @@ namespace Project2.models
         public int PatientId { get; set; }
 
         public virtual Patient? Patient { get; set; }
+
+        public string PatientFullName => Patient?.FullName ?? "";
     }
 }

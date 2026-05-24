@@ -70,6 +70,7 @@ namespace Project2.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("Office_Number")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
@@ -176,33 +177,6 @@ namespace Project2.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("Project2.models.Schedule", b =>
-                {
-                    b.Property<int>("Schedule_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Schedule_ID"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("integer");
-
-                    b.Property<TimeSpan>("End_Time")
-                        .HasColumnType("interval");
-
-                    b.Property<TimeSpan>("Start_Time")
-                        .HasColumnType("interval");
-
-                    b.HasKey("Schedule_ID");
-
-                    b.HasIndex("DoctorId");
-
-                    b.ToTable("Schedules");
-                });
-
             modelBuilder.Entity("Project2.models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -267,22 +241,9 @@ namespace Project2.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Project2.models.Schedule", b =>
-                {
-                    b.HasOne("Project2.models.Doctor", "Doctor")
-                        .WithMany("Schedule")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-                });
-
             modelBuilder.Entity("Project2.models.Doctor", b =>
                 {
                     b.Navigation("Appointment");
-
-                    b.Navigation("Schedule");
                 });
 
             modelBuilder.Entity("Project2.models.Patient", b =>
