@@ -14,6 +14,7 @@ namespace Project2
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
+        public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(connectionString);

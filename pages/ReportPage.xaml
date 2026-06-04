@@ -35,8 +35,8 @@
             </StackPanel>
         </Border>
 
-        <TabControl Grid.Row="2">
-
+        <TabControl x:Name="tabReports"  Grid.Row="2">
+        
             <TabItem Header="🙍 Пациенты">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>

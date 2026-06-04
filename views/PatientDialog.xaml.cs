@@ -1,6 +1,7 @@
 ﻿using Project2.models;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,19 @@ namespace Project2.views
         public PatientDialog()
         {
             InitializeComponent();
+        }
+
+        public PatientDialog(Patient patient) : this()
+        {
+            txtSurname.Text = patient.Surname;
+            txtName.Text = patient.Name;
+            txtPatronymic.Text = patient.Patronymic;
+            txtPhone.Text = patient.Phone;
+            dpDateBirth.SelectedDate = patient.Date_birth;
+            cbGender.SelectedItem = cbGender.Items.Cast<ComboBoxItem>().FirstOrDefault(i => i.Content.ToString() == patient.Gender);
+            txtAddress.Text = patient.Address;
+            txtPhone.Text = patient.Phone;
+            txtEmail.Text = patient.Email;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

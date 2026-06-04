@@ -8,6 +8,9 @@
     <Compile Update="pages\DoctorPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="pages\DoctorSchedulePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="pages\MedicalRecordPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,6 +24,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="views\DoctorDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="views\DoctorScheduleDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="views\EditMedicalRecordDialog.xaml.cs">

@@ -1,6 +1,8 @@
 ﻿using Project2.models;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Numerics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +25,15 @@ namespace Project2.views
         {
             InitializeComponent();
         }
-
+        public DoctorDialog(Doctor doctor) : this()
+        {
+            txtSurname.Text = doctor.Surname;
+            txtName.Text = doctor.Name;
+            txtPatronymic.Text = doctor.Patronymic;
+            txtPhone.Text = doctor.Phone;
+            txtOffice.Text = doctor.Office_Number;
+            cbSpecialization.SelectedItem = cbSpecialization.Items.Cast<ComboBoxItem>().FirstOrDefault(i => i.Content.ToString() == doctor.Specialization);
+        }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtSurname.Text))

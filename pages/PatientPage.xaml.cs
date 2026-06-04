@@ -63,7 +63,7 @@ namespace Project2.pages
 
             if (_selectedPatient != null)
             {
-                txtName.Text = _selectedPatient.Name;
+                txtName.Text = _selectedPatient.FullName;
                 txtDate.Text = _selectedPatient.Date_birth.ToString();
                 txtInsurance.Text = _selectedPatient.Insurance_Number?.ToString() ?? "";
             }
@@ -78,46 +78,9 @@ namespace Project2.pages
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("Введите ФИО пациента!", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (!DateTime.TryParse(txtDate.Text, out DateTime dateBirth))
-            {
-                MessageBox.Show("Введите дату рождения!", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtInsurance.Text))
-            {
-                MessageBox.Show("Введите номер паспорта!", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            using (var db = new AppDbContext())
-            {
-                var patientToUpdate = db.Patients.Find(_selectedPatient.Patient_ID);
-                if (patientToUpdate != null)
-                {
-                    patientToUpdate.Name = txtName.Text.Trim();
-                    patientToUpdate.Insurance_Number = txtInsurance.Text.Trim();
-                    patientToUpdate.Date_birth = dateBirth;
-                    db.SaveChanges();
-                }
-            }
-
-            LoadPatient();
-
-            ClearFields();
-            _selectedPatient = null;
-
-            MessageBox.Show("Пациент обновлён!", "Успех",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            var dialog = new views.PatientDialog(_selectedPatient);
+            if (dialog.ShowDialog() == true)
+                LoadPatient();
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

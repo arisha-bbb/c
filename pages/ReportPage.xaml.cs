@@ -66,29 +66,73 @@ namespace Project2.pages
         {
             try
             {
+                string csv = "";
+
                 using (var db = new AppDbContext())
                 {
-                    var appointments = db.Appointments
-                        .Include(a => a.Patient)
-                        .Include(a => a.Doctor)
-                        .ToList();
+                    switch (tabReports.SelectedIndex)
+                    {
+                        case 0:
+                            csv = "ФИО;Дата рождения;Телефон\n";
 
-                    var csv = "Пациент;Доктор;Дата;Статус\n";
-                    foreach (var a in appointments)
-                        csv += $"{a.PatientFullName};{a.DoctorFullName};{a.Date:dd.MM.yyyy};{a.Status}\n";
+                            foreach (var p in db.Patients.OrderBy(x => x.Surname))
+                            {
+                                csv += $"{p.FullName};{p.Date_birth:dd.MM.yyyy};{p.Phone}\n";
+                            }
+                            break;
 
-                    var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    var filePath = System.IO.Path.Combine(desktop, $"отчёт_{DateTime.Now:dd-MM-yyyy}.csv");
-                    System.IO.File.WriteAllText(filePath, csv);
+                        case 1:
+                            csv = "Пациент;Доктор;Дата;Статус\n";
 
-                    MessageBox.Show($"Отчёт сохранён:\n{filePath}", "Экспорт",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                            var appointments = db.Appointments
+                                .Include(a => a.Patient)
+                                .Include(a => a.Doctor)
+                                .ToList();
+
+                            foreach (var a in appointments)
+                            {
+                                csv += $"{a.PatientFullName};{a.DoctorFullName};{a.Date:dd.MM.yyyy};{a.Status}\n";
+                            }
+                            break;
+
+                        case 2:
+                            csv = "Пациент;Дата;Диагноз;Назначение\n";
+
+                            var records = db.MedicalRecords
+                                .Include(r => r.Patient)
+                                .ToList();
+
+                            foreach (var r in records)
+                            {
+                                csv += $"{r.PatientFullName};{r.Record_Date:dd.MM.yyyy};{r.Diagnosis};{r.Treatment}\n";
+                            }
+                            break;
+                    }
                 }
+
+                var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                var filePath = System.IO.Path.Combine(
+                    desktop,
+                    $"отчёт_{DateTime.Now:dd-MM-yyyy}.csv");
+
+                System.IO.File.WriteAllText(
+                    filePath,
+                    csv,
+                    new System.Text.UTF8Encoding(true));
+
+                MessageBox.Show(
+                    $"Отчёт сохранён:\n{filePath}",
+                    "Экспорт",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка экспорта: {ex.Message}", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    $"Ошибка экспорта: {ex.Message}",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

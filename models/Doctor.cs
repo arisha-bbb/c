@@ -37,5 +37,6 @@ namespace Project2.models
         public string? Phone { get; set; }
 
         public virtual ICollection<Appointment> Appointment { get; set; }
+        public virtual ICollection<DoctorSchedule> DoctorSchedules { get; set; }
     }
 }

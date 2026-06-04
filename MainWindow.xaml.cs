@@ -28,6 +28,7 @@ namespace Project2
             btnAppointment.Click += BtnAppointment_Click;
             btnReports.Click += BtnReports_Click;
             btnUsers.Click += BtnUsers_Click;
+            btnSchedule.Click += BtnSchedule_Click;
             btnSettings.Click += BtnSettings_Click;
             btnNotifications.Click += BtnNotifications_Click;
             btnLogout.Click += BtnLogout_Click;
@@ -83,6 +84,12 @@ namespace Project2
         {
        
             contentControl.Content = new ReportPage();
+        }
+
+        private void BtnSchedule_Click(object sender, RoutedEventArgs e)
+        {
+
+            contentControl.Content = new DoctorSchedulePage();
         }
 
         private void BtnUsers_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,7 @@ namespace Project2.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.7")
+                .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -95,6 +95,35 @@ namespace Project2.Migrations
                     b.HasKey("Doctor_ID");
 
                     b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("Project2.models.DoctorSchedule", b =>
+                {
+                    b.Property<int>("Schedule_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Schedule_ID"));
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan>("SlotStart")
+                        .HasColumnType("interval");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("WorkDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Schedule_ID");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("DoctorSchedules");
                 });
 
             modelBuilder.Entity("Project2.models.MedicalRecord", b =>
@@ -230,6 +259,17 @@ namespace Project2.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("Project2.models.DoctorSchedule", b =>
+                {
+                    b.HasOne("Project2.models.Doctor", "Doctor")
+                        .WithMany("DoctorSchedules")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("Project2.models.MedicalRecord", b =>
                 {
                     b.HasOne("Project2.models.Patient", "Patient")
@@ -244,6 +284,8 @@ namespace Project2.Migrations
             modelBuilder.Entity("Project2.models.Doctor", b =>
                 {
                     b.Navigation("Appointment");
+
+                    b.Navigation("DoctorSchedules");
                 });
 
             modelBuilder.Entity("Project2.models.Patient", b =>

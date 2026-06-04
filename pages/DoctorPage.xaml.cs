@@ -63,7 +63,7 @@ namespace Project2.pages
 
             if (_selectedDoctor != null)
             {
-                txtName.Text = _selectedDoctor.Name;
+                txtName.Text = _selectedDoctor.FullName;
                 txtSpecialization.Text = _selectedDoctor.Specialization;
                 txtOffice.Text = _selectedDoctor.Office_Number?.ToString();
             }
@@ -78,46 +78,11 @@ namespace Project2.pages
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("Введите ФИО доктора!", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            var dialog = new views.DoctorDialog(_selectedDoctor);
+            if (dialog.ShowDialog() == true)
+                LoadDoctor();
 
-            if (string.IsNullOrWhiteSpace(txtSpecialization.Text))
-            {
-                MessageBox.Show("Введите специализацию", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtOffice.Text))
-            {
-                MessageBox.Show("Введите номер кабинета!", "Ошибка",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            using (var db = new AppDbContext())
-            {
-                var doctorToUpdate = db.Doctors.Find(_selectedDoctor.Doctor_ID);
-                if (doctorToUpdate != null)
-                {
-                    doctorToUpdate.Name = txtName.Text.Trim();
-                    doctorToUpdate.Office_Number = txtOffice.Text.Trim();
-                    doctorToUpdate.Specialization = txtSpecialization.Text.Trim();
-                    db.SaveChanges();
-                }
-            }
-
-            LoadDoctor();
-
-            ClearFields();
-            _selectedDoctor = null;
-
-            MessageBox.Show("Доктор обновлён!", "Успех",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
